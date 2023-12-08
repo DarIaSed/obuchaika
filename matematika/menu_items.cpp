@@ -4,29 +4,54 @@
 
 #include "menu_functions.hpp"
 
-const MAst::MenuItem MAst::STUDY_SUMM = {
-	 "1 - Хочу научиться складывать!", MAst::study_summ, &MAst::STUDY
+const MAst::MenuItem MAst::ALGEBRA_SUMM = {
+	 "1 - Хочу научиться складывать!", MAst::algebra_summ, &MAst::STUDY_ALGEBRA
 };
-const MAst::MenuItem MAst::STUDY_SUBSTRACT = {
-	 "2 - Хочу научиться вычитать!", MAst::study_substract, &MAst::STUDY
+const MAst::MenuItem MAst::ALGEBRA_SUBSTRACT = {
+	 "2 - Хочу научиться вычитать!", MAst::algebra_substract, &MAst::STUDY_ALGEBRA
 };
-const MAst::MenuItem MAst::STUDY_MULTIPLY = {
-	 "3 - Хочу научиться умножать!", MAst::study_multiply, &MAst::STUDY
+const MAst::MenuItem MAst::ALGEBRA_MULTIPLY = {
+	 "3 - Хочу научиться умножать!", MAst::algebra_multiply, &MAst::STUDY_ALGEBRA
 };
-const MAst::MenuItem MAst::STUDY_DIVIDE = {
-	 "4 - Хочу научиться делить!", MAst::study_divide, &MAst::STUDY
+const MAst::MenuItem MAst::ALGEBRA_DIVIDE = {
+	 "4 - Хочу научиться делить!", MAst::algebra_divide, &MAst::STUDY_ALGEBRA
 };
+const MAst::MenuItem MAst::ALGEBRA_INFORM = {
+	"5 - Пойду делать информатику!", MAst::algebra_inform, &MAst::STUDY_ALGEBRA
+};
+const MAst::MenuItem MAst::ALGEBRA_GO_BACK = {
+	 "0 - Выйти в главное меню", MAst::go_back, &MAst::STUDY_ALGEBRA
+};
+
+namespace {
+	const MAst::MenuItem* const algebra_children[] = {
+		&MAst::ALGEBRA_GO_BACK,
+		&MAst::ALGEBRA_SUMM,
+		&MAst::ALGEBRA_SUBSTRACT,
+		&MAst::ALGEBRA_MULTIPLY,
+		&MAst::ALGEBRA_DIVIDE,
+		&MAst::ALGEBRA_INFORM
+	};
+	const int algebra_size = sizeof(algebra_children) / sizeof(algebra_children[0]);
+}
+
+const MAst::MenuItem MAst::STUDY_ALGEBRA = {
+	"1 - Хочу учиться алгебре!", MAst::show_menu, &MAst::STUDY, algebra_children, algebra_size
+};
+
+const MAst::MenuItem MAst::STUDY_MATAN = {
+	"2 - Хочу учиться матан!", MAst::show_menu, &MAst::STUDY
+};
+
 const MAst::MenuItem MAst::STUDY_GO_BACK = {
-	 "0 - Выйти в главное меню", MAst::study_go_back, &MAst::STUDY
+	"0 - Хочу выйти в окно!", MAst::go_back, &MAst::STUDY
 };
 
 namespace {
 	const MAst::MenuItem* const study_children[] = {
-		&MAst::STUDY_GO_BACK, 
-		&MAst::STUDY_SUMM,
-		&MAst::STUDY_SUBSTRACT,
-		&MAst::STUDY_MULTIPLY,
-		&MAst::STUDY_DIVIDE,
+		&MAst::STUDY_GO_BACK,
+		&MAst::STUDY_ALGEBRA,
+		&MAst::STUDY_MATAN,
 	};
 	const int study_size = sizeof(study_children) / sizeof(study_children[0]);
 }
